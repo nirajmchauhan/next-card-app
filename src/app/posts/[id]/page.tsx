@@ -1,11 +1,7 @@
 import Link from "next/link";
-import kv from "@vercel/kv";
-import { Post } from "./edit/page";
 import Likes from "./Likes";
 
 export default async function PostPage() {
-  const post = await kv.hgetall<Post>("posts:1");
-  const totalLikes: string | null = await kv.get("post:1:likes");
   return (
     <section className="text-gray-600 body-font">
       <div className="container px-5 py-24 mx-auto">
@@ -19,12 +15,12 @@ export default async function PostPage() {
               />
               <div className="p-6">
                 <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
-                  ❤️ {totalLikes}
+                  ❤️ TOTAL_LIKES
                 </h2>
                 <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
-                  {post?.title}
+                  POST_TITLE
                 </h1>
-                <p className="leading-relaxed mb-3">{post?.content}</p>
+                <p className="leading-relaxed mb-3">POST_CONTENT</p>
                 <div className="flex items-center flex-wrap ">
                   <Link
                     href="/posts/1/edit"
@@ -35,10 +31,10 @@ export default async function PostPage() {
                       className="w-4 h-4 ml-2"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
-                      stroke-width="2"
+                      strokeWidth="2"
                       fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     >
                       <path d="M5 12h14"></path>
                       <path d="M12 5l7 7-7 7"></path>
